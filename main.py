@@ -2,7 +2,7 @@ import webview
 import requests
 from flask import Flask, render_template, jsonify, request
 import threading
-
+import json
 
 app = Flask(__name__)
 
@@ -23,6 +23,22 @@ def buscar_cep(cep):
     return string_dados
 
 
+def load_history():
+    try:
+        with open('history.json', 'r') as f:
+            history = json.load(f)
+    except FileNotFoundError:
+        history = []
+    return history
+
+def save_history(result):
+    history = load_history()
+    history.append(result)
+    history = history[-2:]
+    with open('history.json', 'w') as f:
+        json.dump(history,f)
+
+
 @app.route('/')
 def homepage():
     return render_template('index.html')
@@ -31,8 +47,16 @@ def homepage():
 def buscar():
     dados = request.get_json()
     cep = dados['cep']
-    resultado = buscar_cep(cep)
-    return jsonify(resultado)
+    result = buscar_cep(cep)
+    save_history(result)
+    return jsonify({
+        "result": result,
+        "history": load_history()
+    })
+
+@app.route('/history', methods=['GET'])
+def history():
+    return jsonify(load_history())
 
 def start_flask():
     app.run(debug=True, use_reloader=False)  # Start Flask server

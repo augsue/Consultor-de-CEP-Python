@@ -43,7 +43,7 @@ h1 {
 }
 
 .cep-input {
-    margin-top: 20px;
+    margin-top: 10px;
     padding: 10px;
     font-size: 16px;
     width: 300px;
@@ -55,7 +55,7 @@ h1 {
 }
 
 .result {
-    margin-top: 10px;
+    margin-top: 25px;
     padding-top: 0px;
     border: none;
     border-radius: 5px;
@@ -67,3 +67,17 @@ h1 {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
+.history-container {
+    flex-direction: row;
+    background-color: #2f2f2f;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    border: none;
+    border-radius: 5px;
+    width: 410px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
