@@ -3,7 +3,6 @@ import requests
 from flask import Flask, render_template, jsonify, request
 import threading
 
-print("\n------------------\n")
 
 app = Flask(__name__)
 
@@ -23,6 +22,7 @@ def buscar_cep(cep):
 
     return string_dados
 
+
 @app.route('/')
 def homepage():
     return render_template('index.html')
@@ -35,15 +35,15 @@ def buscar():
     return jsonify(resultado)
 
 def start_flask():
-    app.run()  # Start Flask server
+    app.run(debug=True, use_reloader=False)  # Start Flask server
 
 # webview.start(gui='gtk', http_server=True, func=None)  # custom_logic)
 
 if __name__ == '__main__':
     threading.Thread(target=start_flask, daemon=True).start()  # Start Flask server in a separate thread
-    webview.create_window('CEP', 'http://localhost:5000')
+    webview.create_window('ViaCEP - GUI', 'http://localhost:5000')
     webview.start(gui='gtk')  # Start the webview GUI
 
 # anything below this line will be executed after program FINISHED
 
-print("\n------------------\n")
+pass

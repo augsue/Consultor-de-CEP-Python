@@ -17,6 +17,5 @@ async function buscarCEP() {
     document.getElementById('resultado').innerHTML = `
         <p>${dados.logradouro}, ${dados.bairro}</p>
         <p>${dados.localidade} - ${dados.uf}</p>
-        <p>CEP: ${dados.cep}</p>
     `;
 }
